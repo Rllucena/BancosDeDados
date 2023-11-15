@@ -51,3 +51,14 @@ CREATE TABLE vaga_veiculo (
     valor_pago money default 0,
     primary key (vaga_id, Veiculo_id)
 );
+
+
+
+
+
+
+--1)
+Select * from Veiculo id =1
+
+--2)
+SELECT * FROM Veiculo where ano => 2000;
