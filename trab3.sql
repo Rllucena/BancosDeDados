@@ -13,67 +13,41 @@ CREATE TABLE Cliente (
     email character varying(100) unique,
     senha character varying(100) not null    
     data_nascimento date 
+    endereco varchar(150) not null
 );
 
-CREATE TABLE jornalista (
+CREATE TABLE Modelo (
     id serial primary key,
-    nome character varying(100) not null,
-    cpf character(11) unique,
-    senha character varying(100) not null,
-    data_nascimento date    
+    --titulo character varying (150) not null,
+    descricao text not null,
+    ano_lancamento integer
 );
 
-CREATE TABLE categoria (
+CREATE TABLE Veiculo (
     id serial primary key,
-    descricao text not null
+    chassi character varying (100) not null,
+    placa character varying (7) not null,
+    cor character varying (30) not null,
+    ano integer not null,
+    Cliente_id integer references Cliente (id),
+    Modelo_id integer references Modelo (id),
 );
 
-
-CREATE TABLE noticia (
+CREATE TABLE andar (
     id serial primary key,
-    titulo character varying (150) not null,
-    texto text not null,
-    data_hora timestamp default current_timestamp,
-    categoria_id integer references categoria (id),
-    jornalista_id integer references jornalista (id),
-    flag integer default 1
+  
 );
 
-
-CREATE TABLE foto (
+CREATE TABLE vaga (
     id serial primary key,
-    nome text not null,
-    legenda text,
-    noticia_id integer references noticia (id)    
+    andar_id integer references andar (id)
 );
 
-
-
-CREATE TABLE assinante_noticia (
-    assinante_id integer references assinante (id),
-    noticia_id integer references noticia (id),
-    data_hora_leitura timestamp default current_timestamp,
-    primary key (assinante_id, noticia_id, data_hora_leitura)
-);
-
--- mensal, trimestral
-CREATE TABLE modalidade (
-    id serial primary key,
-    nome text not null,
-    valor money default 0    
-);
-
-CREATE TABLE plano (
-    id serial primary key,
-    modalidade_id integer references modalidade (id),
-    assinante_id integer references assinante (id),
-    data_hora_inicio timestamp default current_timestamp,
-    data_hora_fim timestamp 
-);
-
-CREATE TABLE pagamento (
-    id serial primary key,
-    valor money,
-    data_hora timestamp default current_timestamp,
-    plano_id integer references plano (id)
+CREATE TABLE vaga_veiculo (
+    vaga_id integer references vaga (id),
+    veiculo_id integer references Veiculo (id),
+    data_hora_entrada timestamp default current_timestamp,
+    data_hora_saida timestamp default current_timestamp,
+    valor_pago money default 0,
+    primary key (vaga_id, Veiculo_id)
 );
