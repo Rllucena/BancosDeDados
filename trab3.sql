@@ -63,9 +63,16 @@ Select * from Veiculo id =1
 --2)
 SELECT * FROM Veiculo where ano => 2000;
 
+--3)
+select * from veiculos where Cliente_id=1
+
+--4)   
+select * from vaga_veiculo where veiculo_id=1
+    
+--5)
 
 
-
+    
 */
 Um edíficio de garagem coletiva onde:
 
@@ -76,13 +83,13 @@ Cada andar tem n vagas. Cada vaga está em um andar específico.
 Um veículo pode ocupar diversas vagas ao longo do tempo. E uma mesma vaga poderá ter diversos veículos ao longo do tempo. Durante o período de ocupação de um veículo em uma vaga é preciso armazenar qual veículo que está em uma determinada vaga, data/hora de entrada, data hora de saída e valor pago durante a desocupação
 Tarefas:
 
-Faça a implementação física (CREATE DATABASE, CREATE TABLE e etc.)
-Exiba a placa e o ano do veículo de um determinado veículo
-Exiba a placa, o ano do veículo do veículo, se ele possuir ano a partir de 2000
-Liste todos os carros do modelo 1
-Liste todos os estacionamentos de um veículo
-Quanto tempo um veículo ficou em uma determinada vaga?
-Quantidade de veículos de um determinado modelo
-Média de idade dos clientes
-Se cada hora custa 2 reais, quanto cada veículo pagou? Obs: Somente horas inteiras valem para o cálculo
+1-Faça a implementação física (CREATE DATABASE, CREATE TABLE e etc.)
+2-Exiba a placa e o ano do veículo de um determinado veículo
+3-Exiba a placa, o ano do veículo do veículo, se ele possuir ano a partir de 2000
+4-Liste todos os carros do modelo 1
+5-Liste todos os estacionamentos de um veículo
+6-Quanto tempo um veículo ficou em uma determinada vaga?
+7-Quantidade de veículos de um determinado modelo
+8-Média de idade dos clientes
+9-Se cada hora custa 2 reais, quanto cada veículo pagou? Obs: Somente horas inteiras valem para o cálculo
 *\
