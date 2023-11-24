@@ -16,7 +16,7 @@ CREATE TABLE Cliente (
     nome character varying(100) not null,
     email character varying(100) unique,
     senha character varying(100) not null,    
-    data_nascimento date, 
+    data_nascimento date NOT NULL, 
     rua VARCHAR(100),
     bairro VARCHAR(100),
     complemento VARCHAR(100),
@@ -27,7 +27,7 @@ CREATE TABLE Modelo (
     id serial primary key,
     --titulo character varying (150) not null,
     descricao text not null,
-    ano_lancamento integer
+    ano_lancamento integer NOT NULL
 );
 
 CREATE TABLE Veiculo (
@@ -41,7 +41,8 @@ CREATE TABLE Veiculo (
 );
 
 CREATE TABLE andar (
-    id serial primary key
+    id serial primary key,
+    numero_vagas INT NOT NULL
   
 );
 
@@ -53,7 +54,7 @@ CREATE TABLE vaga (
 CREATE TABLE vaga_veiculo (
     vaga_id integer references vaga (id),
     veiculo_id integer references Veiculo (id),
-    data_hora_entrada timestamp default current_timestamp,
+    data_hora_entrada timestamp default current_timestamp NOT NULL,
     data_hora_saida timestamp default current_timestamp,
     valor_pago money default 0,
     primary key (vaga_id, Veiculo_id)
