@@ -127,7 +127,29 @@ SELECT vaga_veiculo.*, vaga.*, andar.* FROM vaga_veiculo JOIN vaga ON vaga.id = 
 --6)
 
 
-    
+--7)
+SELECT Modelo.descricao AS modelo, COUNT(Veiculo.id) AS quantidade FROM Modelo JOIN Veiculo ON Veiculo.Modelo_id = Modelo.id WHERE Modelo.id = 1 GROUP BY Modelo.descricao;
+
+--8)
+SELECT AVG(EXTRACT(YEAR FROM AGE(CURRENT_DATE, data_nascimento))) AS media_idade FROM Cliente;
+
+--9)
+SELECT
+    veiculo.placa,
+    vaga_veiculo.data_hora_entrada,
+    vaga_veiculo.data_hora_saida,
+    CASE
+        WHEN vaga_veiculo.data_hora_saida IS NOT NULL THEN
+            CEIL(EXTRACT(EPOCH FROM (vaga_veiculo.data_hora_saida - vaga_veiculo.data_hora_entrada)) / 3600) * 2
+        ELSE
+            0
+    END AS valor_pago
+FROM
+    vaga_veiculo
+JOIN
+    veiculo ON veiculo.id = vaga_veiculo.veiculo_id;
+
+
 /*/
 Um edíficio de garagem coletiva onde:
 
@@ -135,7 +157,8 @@ Cada Cliente tem cpf, nome, data nascimento e endereço (rua, bairro, complement
 Cada Cliente pode ter muitos Veículos. Cada Veículo tem: chassi, placa, cor, ano, um dono (cliente) e é de modelo.
 Cada Modelo tem uma descrição e o ano de lançamento
 Cada andar tem n vagas. Cada vaga está em um andar específico.
-Um veículo pode ocupar diversas vagas ao longo do tempo. E uma mesma vaga poderá ter diversos veículos ao longo do tempo. Durante o período de ocupação de um veículo em uma vaga é preciso armazenar qual veículo que está em uma determinada vaga, data/hora de entrada, data hora de saída e valor pago durante a desocupação
+Um veículo pode ocupar diversas vagas ao longo do tempo. E uma mesma vaga poderá ter diversos veículos ao longo do tempo. 
+Durante o período de ocupação de um veículo em uma vaga é preciso armazenar qual veículo que está em uma determinada vaga, data/hora de entrada, data hora de saída e valor pago durante a desocupação
 Tarefas:
 
 1-Faça a implementação física (CREATE DATABASE, CREATE TABLE e etc.)
