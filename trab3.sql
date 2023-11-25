@@ -125,7 +125,17 @@ SELECT * FROM Veiculo WHERE Modelo_id = 1;
 SELECT vaga_veiculo.*, vaga.*, andar.* FROM vaga_veiculo JOIN vaga ON vaga.id = vaga_veiculo.vaga_id JOIN andar ON andar.id = vaga.andar_id WHERE vaga_veiculo.veiculo_id = 1;
     
 --6)
-
+SELECT
+    veiculo.placa,
+    vaga_veiculo.data_hora_entrada,
+    vaga_veiculo.data_hora_saida,
+    COALESCE(vaga_veiculo.data_hora_saida, CURRENT_TIMESTAMP) - vaga_veiculo.data_hora_entrada AS tempo_estacionado
+FROM
+    vaga_veiculo
+JOIN
+    veiculo ON veiculo.id = vaga_veiculo.veiculo_id
+WHERE
+    vaga_veiculo.vaga_id = 1;
 
 --7)
 SELECT Modelo.descricao AS modelo, COUNT(Veiculo.id) AS quantidade FROM Modelo JOIN Veiculo ON Veiculo.Modelo_id = Modelo.id WHERE Modelo.id = 1 GROUP BY Modelo.descricao;
